@@ -1,0 +1,29 @@
+.margin{
+   margin: 10px 0px 0px 0px;
+}
+
+.loc{
+  font-size: 12px;
+  /*font-weight:400;*/
+  margin-left:-1px;
+}
+
+.center{
+  text-align: center;
+}
+
+.header{
+  font-size: 20px;
+  padding-bottom:5px;
+  color: #BA202D;
+}
+
+.header a{
+  font-size: 20px;
+  padding-bottom:5px;
+  color: #BA202D;
+}
+
+.address{
+   padding:3px 0px 8px 0px;
+}

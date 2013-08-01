@@ -1,0 +1,12 @@
+var crossingData = {"type":"FeatureCollection","features":[
+{"type":"Feature","id":"1","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.240206, 33.928277]}},
+{"type":"Feature","id":"2","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.755104, 33.748767]}},
+{"type":"Feature","id":"3","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.5967, 33.454117]}},
+{"type":"Feature","id":"4","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.520758, 33.649104]}},
+{"type":"Feature","id":"5","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.418105, 33.726444]}},
+{"type":"Feature","id":"6","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.405946, 33.656787]}},
+{"type":"Feature","id":"7","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.617973, 33.816883]}},
+{"type":"Feature","id":"8","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.6217, 33.537905]}},
+{"type":"Feature","id":"9","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.550625, 33.573098]}},
+{"type":"Feature","id":"10","properties":{"name":"Rail Crossing/Intersection","number":34, "incidents":"incident 1 <br />incident 2 <br />incident 3"},"geometry":{"type":"Point","coordinates":[-84.576302, 33.986301]}}
+]};

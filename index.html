@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Crossing Map</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<link rel="stylesheet" href="css/train.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+
+</head>
+<body>
+	<div id="map"></div>
+
+	<script src="js/leaflet.js"></script>
+
+	<!--<script type="text/javascript" src="js/geo.js"></script>-->
+	<script type="text/javascript">
+
+		var map = L.map('map')
+                           .setView(new L.LatLng(33.880677,-84.611206),9); 
+
+		var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; 2013 OpenStreetMap contributors, Imagery &copy; 2013 CloudMade',
+			key: 'BC9A493B41014CAABB98F0471D759707',
+			styleId: 100064
+		}).addTo(map);
+
+		var crossingData = {"type":"FeatureCollection","features":[
+			{"type":"Feature","id":"1","properties":{"name":"Urban Farm Ormewood","address":"Near the intersection of Ormewood Ave SE and Naomi St SE<br />Atlanta, 30316","desc":"The 5.5 acres of private land is leased and worked by a few local couples, before and after their day jobs and on the weekends. The farmers grow the food for their families and friends, said Laurie Bagett.  "},"geometry":{"type":"Point","coordinates":[-84.355474,33.733263]}},
+			{"type":"Feature","id":"2","properties":{"name":"<a href='http://harvestfarmsuwanee.com/' target='blank'>Harvest Farm</a>","address":"752 White Street<br /> Suwanee, 30024","desc":"The state's largest organic community garden houses 76 beds for community members to grow their own produce. The farm is open to the public, and includes a butterfly garden and walking trail that leads to a public park, White Street Park"},"geometry":{"type":"Point","coordinates":[-84.077125,34.047148]}},
+			{"type":"Feature","id":"3","properties":{"name":"<a href='http://loveislovefarm.com/?page_id=31' target='blank'>Love is Love Farm at Gaia Gardens</a>","address":"2347 Hosea Williams Blvd <br />Atlanta, 30317","desc":"The 5 acre farm is owned by East Lake Commons Co-housing community, and leased to Love is Love Farm, where they grow blueberries, grapes, figs and other produce to sell through their Community Supported Agriculture program, at the East Atlanta Village Farmer's Market and to local restaurants."},"geometry":{"type":"Point","coordinates":[-84.309983,33.750731]}},
+			{"type":"Feature","id":"4","properties":{"name":"<a href='http://patchworkcityfarms.weebly.com/csa--markets.html' target='blank'>Patchwork City Farms</a>","address":"Brown Middle School<br /> 765 Peeples St. SW<br /> Atlanta, 30310","desc":"The half-acre farm in Southwest Atlanta is leased by a number of families from the Atlanta Public Schools System. The farm runs its own CSA and sells produce at multiple farmers markets around the city. "},"geometry":{"type":"Point","coordinates":[-84.420469,33.734101]}},
+			{"type":"Feature","id":"5","properties":{"name":"<a href='http://oakleafmennonitefarm.wordpress.com/our-folks/current-interns/' target='blank'>Oakleaf Mennonite Farm</a>","address":"1088 Bouldercrest Dr SE<br /> Atlanta, 30316","desc":"The nine acres of land is a \"working farm on a church campus,\" and grows produce, fruits and raises sheep, goats and chicken. The farm works to teach the community about local and sustainable gardening, and hosts summer camps for children to learn the importance of growing and cultivating food. "},"geometry":{"type":"Point","coordinates":[-84.330883,33.72425]}},
+			{"type":"Feature","id":"6","properties":{"name":"Crack in the Sidewalk Farmlet","address":"561 McWilliams Rd SE<br /> Atlanta, 30315","desc":"The young couple, Isia Cooper and Chris Clinton, have taken over their neighborhood, and are farming in three backyards on their block. They are selling produce at farmers markets around metro Atlanta. "},"geometry":{"type":"Point","coordinates":[-84.370623,33.52027]}},
+			{"type":"Feature","id":"7","properties":{"name":"<a href='http://www.serenbefarms.com/the-farm' target='blank'>Serenbe Farms</a>","address":"8457 Atlanta Newnan Road<br /> Chattahoochee Hills, 30268","desc":"Over 350 varieties of vegetables, herbs, flowers fruits and mushrooms are harvested on the 25 acres of farmland in the Chattahoochee Hills, about 40 miles from downtown. The farm is involved in its own CSA, and sells produce to local restaurants as well.  "},"geometry":{"type":"Point","coordinates":[-84.732335,33.52027]}},
+			{"type":"Feature","id":"8","properties":{"name":"<a href='http://www.countrygardensfarm.com/About_Our_Farm.php' target='blank'>Country Gardens Farm</a>","address":"2050 McCollum Sharpsburg Rd<br /> Newnan, 30265","desc":"Just 43 miles from downtown, the Cunningham Family is growing and producing fresh vegetables, fruits, honey, grass-fed beef, milk, chickens, and free-range eggs on 2-acres of pastures. They sell at Atlanta farmers markets during the week, and operate their own CSA as well. "},"geometry":{"type":"Point","coordinates":[-84.675815,33.386787]}},
+			{"type":"Feature","id":"9","properties":{"name":"Decimal Place Farm","address":"4314 Almach Ave<br /> Conley, 30288","desc":"The dairy goat farm on 18 acres in Colney, Georgia is just down the road from Hartsfield International Airport. The farm produces goat milk and cheese to sell at local Atlanta farmers markets.  "},"geometry":{"type":"Point","coordinates":[-84.329424,33.636864]}},
+			{"type":"Feature","id":"10","properties":{"name":"<a href='http://www.frolonafarm.com/index.html' target='blank'>Frolona Farm</a>","address":"3232 Frolona Road<br /> Franklin, 30217","desc":"Just an hours' drive outside the city lies Frolona Farm, where the Davis family raises grass-fed beef, pastured pork and seasonal produce is raised to be sold at Atlanta farmers markets."},"geometry":{"type":"Point","coordinates":[-85.184877,33.311953]}},
+			{"type":"Feature","id":"11","properties":{"name":"<a href='http://parkersonponce.com/5th-kingdom-fresh-exotic-mushrooms/' target='blank'>5<sup>th</sup> Kingdom Mushrooms</a>","address":"Suite #104, 318 Cherokee Ave SE<br /> Atlanta, 30312","desc":"Farmer Steven Bell harvests top-notch mushrooms for Atlantans, and sells them to local restaurants and at farmers markets."},"geometry":{"type":"Point","coordinates":[-84.373283,33.746039]}},
+			{"type":"Feature","id":"12","properties":{"name":"<a href='http://www.freshrootsfarm.blogspot.com/' target='blank'>Fresh Roots Farm</a>","address":"1260 Foster Street ST E42<br /> Atlanta, 30318","desc":"At their three locations, Fresh Roots farmers are growing organic produce of every kind in urban Atlanta, and then selling it at local markets. The farm is open to the public, and offers a number of classes and activities available to the community. "},"geometry":{"type":"Point","coordinates":[-84.414718,33.785764]}},
+			{"type":"Feature","id":"12","properties":{"name":"<a href='http://www.freshrootsfarm.blogspot.com/' target='blank'>Fresh Roots Farm</a>","address":"102 Berean Ave<br /> Atlanta, 30312","desc":"At their three locations, Fresh Roots farmers are growing organic produce of every kind in urban Atlanta, and then selling it at local markets. The farm is open to the public, and offers a number of classes and activities available to the community. "},"geometry":{"type":"Point","coordinates":[-84.366589,33.751159]}},
+			{"type":"Feature","id":"12","properties":{"name":"<a href='http://www.freshrootsfarm.blogspot.com/' target='blank'>Fresh Roots Farm</a>","address":"Ponce De Leon Ave NE & Springdale Rd NE<br />Atlanta, 30306","desc":"At their three locations, Fresh Roots farmers are growing organic produce of every kind in urban Atlanta, and then selling it at local markets. The farm is open to the public, and offers a number of classes and activities available to the community. "},"geometry":{"type":"Point","coordinates":[-84.345024,33.774706]}},
+			{"type":"Feature","id":"15","properties":{"name":"<a href='http://trulylivingwell.net/about-us/' target='blank'>Truly Living Well, Wheat Street Gardens</a>","address":"75 Hilliard St NE<br /> Atlanta, 30312","desc":"Founded in 2006 by K. Rashid Nuri- the center is a non-profit that is active in teaching the community about food security and sustainable agriculture. The farm runs its own CSA and offers tours, training and job opportunities for community members."},"geometry":{"type":"Point","coordinates":[-84.376523,33.756868]}},
+			{"type":"Feature","id":"16","properties":{"name":"Maddox Farms","address":"Between North Park Square between Shillings Restaurant and the Strand Theater<br />Marietta, 30060","desc":"The family owned farm in Decatur focuses primarily on eggs, heirloom vegetables and plants, and sells them, along with fresh boiled peanuts at the Marietta Farmers Market."},"geometry":{"type":"Point","coordinates":[-84.549625,33.953355]}}
+			//{"type":"Feature","id":"1","properties":{"name":"","address":"","desc":""},"geometry":{"type":"Point","coordinates":[]}}
+			]};
+		
+		var arms = L.icon({
+			iconUrl: 'images/farm.png',
+			iconSize: [50,50],
+			iconAnchor: [35,35],
+			popupAnchor: [0, -28]
+		});
+		
+		/*var alt = L.icon({
+			iconUrl: 'images/stop2.png',
+			iconSize: [40,70],
+			iconAnchor: [20,35],
+			popupAnchor: [0, -28]
+		});*/
+                
+                // control that shows state info on hover
+		var info = L.control();
+
+		info.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info');
+			this.update();
+			return this._div;
+		};
+		
+		/*props.name
+		props.address
+		props.desc*/
+
+		info.update = function (props) {
+			this._div.innerHTML = '' +  (props ?
+				'<div class="header">'+props.name+'</div><div class="address">'+props.address+'</div><div class="">'+props.desc+'</div>'
+				//'<b>' + props.name + '</b><br />' + props.railroad + ' collisions in the past "x" years<br /><div class="margin"><b>Collisions</b></div>' + props.collisions
+				: '<h4>Urban Farm Information</h4> Click on a farm for <br/> more information');
+		};
+
+		info.addTo(map);
+
+
+		function clickFeature(e) {
+			var layer = e.target;
+			//e.target.setIcon(stop);
+			
+			info.update(layer.feature.properties);
+		}
+
+		
+		var geojson;
+
+		function resetHighlight(e) {
+			geojson.resetStyle(e.target);
+			e.target.setIcon(arms);
+			info.update();
+		}
+
+		function onEachFeature(feature, layer) {
+			layer.on({
+				click: clickFeature
+				//mouseout: resetHighlight
+			});
+		}
+		geojson = L.geoJson(crossingData, {
+
+			pointToLayer: function (feature, latlng) {
+				return L.marker(latlng, {icon: arms});
+			},
+			onEachFeature: onEachFeature
+			
+		}).addTo(map);
+
+
+	</script>
+</body>
+</html>
