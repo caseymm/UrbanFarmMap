@@ -49,19 +49,19 @@
 			//{"type":"Feature","id":"1","properties":{"name":"","address":"","desc":""},"geometry":{"type":"Point","coordinates":[]}}
 			]};
 		
-		var arms = L.icon({
+		var farms = L.icon({
 			iconUrl: 'images/farm.png',
 			iconSize: [50,50],
 			iconAnchor: [35,35],
 			popupAnchor: [0, -28]
 		});
 		
-		/*var alt = L.icon({
-			iconUrl: 'images/stop2.png',
-			iconSize: [40,70],
-			iconAnchor: [20,35],
+		var alt = L.icon({
+			iconUrl: 'images/farmSel.png',
+			iconSize: [50,50],
+			iconAnchor: [35,35],
 			popupAnchor: [0, -28]
-		});*/
+		});
                 
                 // control that shows state info on hover
 		var info = L.control();
@@ -86,21 +86,20 @@
 		info.addTo(map);
 
 
-		function clickFeature(e) {
-			var layer = e.target;
-			//e.target.setIcon(stop);
-			
-			info.update(layer.feature.properties);
-		}
+		var clickedMarker;
 
+		function clickFeature(e) {
+		    if(clickedMarker) {
+			  clickedMarker.setIcon(farms);
+		    }
+		    var layer = e.target;
+		    e.target.setIcon(alt);
+		    clickedMarker = e.target;
+		
+		    info.update(layer.feature.properties);
+		}
 		
 		var geojson;
-
-		function resetHighlight(e) {
-			geojson.resetStyle(e.target);
-			e.target.setIcon(arms);
-			info.update();
-		}
 
 		function onEachFeature(feature, layer) {
 			layer.on({
@@ -111,7 +110,7 @@
 		geojson = L.geoJson(crossingData, {
 
 			pointToLayer: function (feature, latlng) {
-				return L.marker(latlng, {icon: arms});
+				return L.marker(latlng, {icon: farms});
 			},
 			onEachFeature: onEachFeature
 			
