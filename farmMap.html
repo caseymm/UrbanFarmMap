@@ -9,32 +9,27 @@
 
 	<link rel="stylesheet" href="css/leaflet.css" />
 	<link rel="stylesheet" href="css/train.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css" /><![endif]-->
-	<link rel="stylesheet" href="css/MarkerCluster.css" />
-	<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="css/MarkerCluster.Default.ie.css" /><![endif]-->
-	<script src="js/leaflet.js"></script>
-	<script src="js/leaflet.markercluster-src.js"></script>
+	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
 
 </head>
 <body>
 	<div id="map"></div>
 
-	
+	<script src="js/leaflet.js"></script>
 
 	<!--<script type="text/javascript" src="js/geo.js"></script>-->
 	<script type="text/javascript">
 
-		/*var map = L.map('map')
+		var map = L.map('map')
                            .setView(new L.LatLng(33.880677,-84.611206),9); 
 
 		var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
 			attribution: 'Map data &copy; 2013 OpenStreetMap contributors, Imagery &copy; 2013 CloudMade',
 			key: 'BC9A493B41014CAABB98F0471D759707',
 			styleId: 100064
-		}).addTo(map);*/
+		}).addTo(map);
 
-		var farmList = {"type":"FeatureCollection","features":[
+		var crossingData = {"type":"FeatureCollection","features":[
 			{"type":"Feature","id":"1","properties":{"name":"Urban Farm Ormewood","address":"Near the intersection of Ormewood Ave SE and Naomi St SE<br />Atlanta, 30316","desc":"The 5.5 acres of private land is leased and worked by a few local couples, before and after their day jobs and on the weekends. The farmers grow the food for their families and friends, said Laurie Bagett.  "},"geometry":{"type":"Point","coordinates":[-84.355474,33.733263]}},
 			{"type":"Feature","id":"2","properties":{"name":"<a href='http://harvestfarmsuwanee.com/' target='blank'>Harvest Farm</a>","address":"752 White Street<br /> Suwanee, 30024","desc":"The state's largest organic community garden houses 76 beds for community members to grow their own produce. The farm is open to the public, and includes a butterfly garden and walking trail that leads to a public park, White Street Park"},"geometry":{"type":"Point","coordinates":[-84.077125,34.047148]}},
 			{"type":"Feature","id":"3","properties":{"name":"<a href='http://loveislovefarm.com/?page_id=31' target='blank'>Love is Love Farm at Gaia Gardens</a>","address":"2347 Hosea Williams Blvd <br />Atlanta, 30317","desc":"The 5 acre farm is owned by East Lake Commons Co-housing community, and leased to Love is Love Farm, where they grow blueberries, grapes, figs and other produce to sell through their Community Supported Agriculture program, at the East Atlanta Village Farmer's Market and to local restaurants."},"geometry":{"type":"Point","coordinates":[-84.309983,33.750731]}},
@@ -50,20 +45,31 @@
 			{"type":"Feature","id":"12","properties":{"name":"<a href='http://www.freshrootsfarm.blogspot.com/' target='blank'>Fresh Roots Farm</a>","address":"102 Berean Ave<br /> Atlanta, 30312","desc":"At their three locations, Fresh Roots farmers are growing organic produce of every kind in urban Atlanta, and then selling it at local markets. The farm is open to the public, and offers a number of classes and activities available to the community. "},"geometry":{"type":"Point","coordinates":[-84.366589,33.751159]}},
 			{"type":"Feature","id":"12","properties":{"name":"<a href='http://www.freshrootsfarm.blogspot.com/' target='blank'>Fresh Roots Farm</a>","address":"Ponce De Leon Ave NE & Springdale Rd NE<br />Atlanta, 30306","desc":"At their three locations, Fresh Roots farmers are growing organic produce of every kind in urban Atlanta, and then selling it at local markets. The farm is open to the public, and offers a number of classes and activities available to the community. "},"geometry":{"type":"Point","coordinates":[-84.345024,33.774706]}},
 			{"type":"Feature","id":"15","properties":{"name":"<a href='http://trulylivingwell.net/about-us/' target='blank'>Truly Living Well, Wheat Street Gardens</a>","address":"75 Hilliard St NE<br /> Atlanta, 30312","desc":"Founded in 2006 by K. Rashid Nuri- the center is a non-profit that is active in teaching the community about food security and sustainable agriculture. The farm runs its own CSA and offers tours, training and job opportunities for community members."},"geometry":{"type":"Point","coordinates":[-84.376523,33.756868]}},
-			{"type":"Feature","id":"16","properties":{"name":"Maddox Farms","address":"Between North Park Square between Shillings Restaurant and the Strand Theater<br />Marietta, 30060","desc":"The family owned farm in Decatur focuses primarily on eggs, heirloom vegetables and plants, and sells them, along with fresh boiled peanuts at the Marietta Farmers Market."},"geometry":{"type":"Point","coordinates":[-84.549625,33.953355]}}
-			//{"type":"Feature","id":"1","properties":{"name":"","address":"","desc":""},"geometry":{"type":"Point","coordinates":[]}}
+			{"type":"Feature","id":"16","properties":{"name":"Maddox Farms","address":"Between North Park Square between Shillings Restaurant and the Strand Theater<br />Marietta, 30060","desc":"The family owned farm in Decatur focuses primarily on eggs, heirloom vegetables and plants, and sells them, along with fresh boiled peanuts at the Marietta Farmers Market."},"geometry":{"type":"Point","coordinates":[-84.549625,33.953355]}},
+			{"type":"Feature","id":"17","properties":{"name":"PodPonics LLC","address":"3855 Ruby H. Harper Blvd. <br />Atlanta, 30354","desc":""},"geometry":{"type":"Point","coordinates":[-84.380515,33.649511]}},
+                        {"type":"Feature","id":"18","properties":{"name":"Metro Atlanta Urban Farm","address":"3271 Main Street<br /> College Park, 30337","desc":""},"geometry":{"type":"Point","coordinates":[-84.446261,33.666782]}},
+                        {"type":"Feature","id":"19","properties":{"name":"Atlanta Gourmet Mushroom","address":"3800 Wendell Dr SW<br /> Atlanta, 30336","desc":""},"geometry":{"type":"Point","coordinates":[-84.517114,33.765966]}},
+                        {"type":"Feature","id":"20","properties":{"name":"The Funny Farm","address":"4459 Allgood Springs Dr.<br /> Stone Mountain, 30083","desc":""},"geometry":{"type":"Point","coordinates":[-84.211085,33.777524]}},
+                        {"type":"Feature","id":"21","properties":{"name":"Hometown Honey","address":"3001 Knightsbridge Rd<br /> Kennesaw, 30144","desc":""},"geometry":{"type":"Point","coordinates":[-84.621398,34.029847]}},
+                        {"type":"Feature","id":"22","properties":{"name":"Oakhurst Community Garden","address":"435 Oakview Rd<br /> Decatur, 30030","desc":""},"geometry":{"type":"Point","coordinates":[-84.296765,33.762363]}},
+                        {"type":"Feature","id":"23","properties":{"name":"Sugar Hill Community Gardens","address":"6195 Austin Garner Rd<br /> Sugar Hill, 30518","desc":""},"geometry":{"type":"Point","coordinates":[-84.070301,34.131149]}},
+                        {"type":"Feature","id":"24","properties":{"name":"Cardinal Lake Community Garden","address":"Cardinal Lake Circle NW <br />Duluth, 30096","desc":""},"geometry":{"type":"Point","coordinates":[-84.131434,33.978919]}},
+                        {"type":"Feature","id":"25","properties":{"name":"Henderson Park Community Garden","address":"2723 Henderson Rd <br /> Tucker, 30084","desc":""},"geometry":{"type":"Point","coordinates":[-84.231899,33.863681]}},
+                        {"type":"Feature","id":"26","properties":{"name":"Smoke Rise Community Garden","address":"Hugh Howell Rd<br />Tucker, 30084","desc":""},"geometry":{"type":"Point","coordinates":[-84.202223,33.848962]}},
+                        {"type":"Feature","id":"27","properties":{"name":"Atwood Community Garden-Urban Farm","address":"779 Atwood St SW <br /> Atlanta, 30310","desc":""},"geometry":{"type":"Point","coordinates":[-84.429588,33.734083]}},
+                        {"type":"Feature","id":"28","properties":{"name":"Cabbagetown Community Garden","address":"166 Berean Ave SE <br />Atlanta, 30316","desc":""},"geometry":{"type":"Point","coordinates":[-84.366524,33.750017]}},
+                        {"type":"Feature","id":"29","properties":{"name":"Edgewood Community Garden","address":"Edgewood, Atlanta, 30317","desc":""},"geometry":{"type":"Point","coordinates":[-84.338329,33.755245]}},
+                        {"type":"Feature","id":"30","properties":{"name":"Poncey-Highland Community Garden","address":"Poncey-Highland (off of Freedom Pkwy)<br /> Atlanta, 30306","desc":""},"geometry":{"type":"Point","coordinates":[-84.35822,33.770087]}},
+                        {"type":"Feature","id":"31","properties":{"name":"Peachtree Hills Community Garden","address":"Peachtree Hills Ave NE<br /> Atlanta, 30305 ","desc":""},"geometry":{"type":"Point","coordinates":[-84.376953,33.818198]}},
+                        {"type":"Feature","id":"32","properties":{"name":"Techwood Community Garden","address":"Centennial Place<br /> Atlanta, 30313","desc":""},"geometry":{"type":"Point","coordinates":[-84.390106,33.765163]}},
+                        {"type":"Feature","id":"33","properties":{"name":"<a href='http://trulylivingwell.net/about-us/' target='blank'>Truly Living Well, Wheat Street Gardens</a>","address":"3353 Washington Rd<br />Atlanta, 30344","desc":"Founded in 2006 by K. Rashid Nuri- the center is a non-profit that is active in teaching the community about food security and sustainable agriculture. The farm runs its own CSA and offers tours, training and job opportunities for community members."},"geometry":{"type":"Point","coordinates":[-84.468062,33.664407]}},
+                        {"type":"Feature","id":"34","properties":{"name":"<a href='http://trulylivingwell.net/about-us/' target='blank'>Truly Living Well, Wheat Street Gardens</a>","address":"1856 Harbin Rd<br />Atlanta, 30311","desc":"Founded in 2006 by K. Rashid Nuri- the center is a non-profit that is active in teaching the community about food security and sustainable agriculture. The farm runs its own CSA and offers tours, training and job opportunities for community members."},"geometry":{"type":"Point","coordinates":[-84.4807,33.704795]}},
+                        {"type":"Feature","id":"35","properties":{"name":"<a href='http://trulylivingwell.net/about-us/' target='blank'>Truly Living Well, Wheat Street Gardens</a>","address":"386 Elm St<br />Rockmart, 30153","desc":"Founded in 2006 by K. Rashid Nuri- the center is a non-profit that is active in teaching the community about food security and sustainable agriculture. The farm runs its own CSA and offers tours, training and job opportunities for community members."},"geometry":{"type":"Point","coordinates":[-85.04611,33.996426]}},
+                        {"type":"Feature","id":"36","properties":{"name":"<a href='http://trulylivingwell.net/about-us/' target='blank'>Truly Living Well, Wheat Street Gardens</a>","address":"66 Hilliard St NE<br />Atlanta, 30312","desc":"Founded in 2006 by K. Rashid Nuri- the center is a non-profit that is active in teaching the community about food security and sustainable agriculture. The farm runs its own CSA and offers tours, training and job opportunities for community members."},"geometry":{"type":"Point","coordinates":[-84.376523, 33.756654]}}
+                        //{"type":"Feature","id":"37","properties":{"name":"<a href='http://trulylivingwell.net/about-us/' target='blank'>Truly Living Well, Wheat Street Gardens</a>","address":"75 Hilliard St NE<br />Atlanta, 30312","desc":"Founded in 2006 by K. Rashid Nuri- the center is a non-profit that is active in teaching the community about food security and sustainable agriculture. The farm runs its own CSA and offers tours, training and job opportunities for community members."},"geometry":{"type":"Point","coordinates":[-84.376523,33.756868]}},
+                        
+                        //{"type":"Feature","id":"33","properties":{"name":"","address":"","desc":""},"geometry":{"type":"Point","coordinates":[]}}
 			]};
-		
-		var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/100064/256/{z}/{x}/{y}.png', {
-			maxZoom: 9,
-			attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-			key: 'BC9A493B41014CAABB98F0471D759707'
-		});
-
-		var map = L.map('map')
-				.addLayer(cloudmade);
-		
-		var markers = L.markerClusterGroup();
 		
 		var farms = L.icon({
 			iconUrl: 'images/farm.png',
@@ -78,29 +84,8 @@
 			iconAnchor: [35,35],
 			popupAnchor: [0, -28]
 		});
-
-		var geojson;
-
-		
-		geojson = L.geoJson(farmList, {
-
-			pointToLayer: function (feature, latlng) {
-				return L.marker(latlng, {icon: farms});
-			},
-			onEachFeature: function (feature, layer) {
-			var clickedMarker;
-
-				function clickFeature(e) {
-				    if(clickedMarker) {
-					  clickedMarker.setIcon(farms);
-				    }
-				    var layer = e.target;
-				    e.target.setIcon(alt);
-				    clickedMarker = e.target;
-				
-				    info.update(layer.feature.properties);
-				}
-			    // control that shows state info on hover
+                
+                // control that shows state info on hover
 		var info = L.control();
 
 		info.onAdd = function (map) {
@@ -121,13 +106,37 @@
 		};
 
 		info.addTo(map);
-		}
-			
-		});
-		markers.addLayer(geojson);
 
-		map.addLayer(markers);
-		map.fitBounds(markers.getBounds());
+
+		var clickedMarker;
+
+		function clickFeature(e) {
+		    if(clickedMarker) {
+			  clickedMarker.setIcon(farms);
+		    }
+		    var layer = e.target;
+		    e.target.setIcon(alt);
+		    clickedMarker = e.target;
+		
+		    info.update(layer.feature.properties);
+		}
+		
+		var geojson;
+
+		function onEachFeature(feature, layer) {
+			layer.on({
+				click: clickFeature
+				//mouseout: resetHighlight
+			});
+		}
+		geojson = L.geoJson(crossingData, {
+
+			pointToLayer: function (feature, latlng) {
+				return L.marker(latlng, {icon: farms});
+			},
+			onEachFeature: onEachFeature
+			
+		}).addTo(map);
 
 
 	</script>

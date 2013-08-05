@@ -53,8 +53,8 @@
 			{"type":"Feature","id":"16","properties":{"name":"Maddox Farms","address":"Between North Park Square between Shillings Restaurant and the Strand Theater<br />Marietta, 30060","desc":"The family owned farm in Decatur focuses primarily on eggs, heirloom vegetables and plants, and sells them, along with fresh boiled peanuts at the Marietta Farmers Market."},"geometry":{"type":"Point","coordinates":[-84.549625,33.953355]}}
 			//{"type":"Feature","id":"1","properties":{"name":"","address":"","desc":""},"geometry":{"type":"Point","coordinates":[]}}
 			]};
-		
-		var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/100064/256/{z}/{x}/{y}.png', {
+                
+                var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/100064/256/{z}/{x}/{y}.png', {
 			maxZoom: 9,
 			attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
 			key: 'BC9A493B41014CAABB98F0471D759707'
@@ -78,29 +78,8 @@
 			iconAnchor: [35,35],
 			popupAnchor: [0, -28]
 		});
-
-		var geojson;
-
-		
-		geojson = L.geoJson(farmList, {
-
-			pointToLayer: function (feature, latlng) {
-				return L.marker(latlng, {icon: farms});
-			},
-			onEachFeature: function (feature, layer) {
-			var clickedMarker;
-
-				function clickFeature(e) {
-				    if(clickedMarker) {
-					  clickedMarker.setIcon(farms);
-				    }
-				    var layer = e.target;
-				    e.target.setIcon(alt);
-				    clickedMarker = e.target;
-				
-				    info.update(layer.feature.properties);
-				}
-			    // control that shows state info on hover
+                
+                // control that shows farm info on hover
 		var info = L.control();
 
 		info.onAdd = function (map) {
@@ -121,10 +100,39 @@
 		};
 
 		info.addTo(map);
+
+
+		var clickedMarker;
+
+		function clickFeature(e) {
+		    if(clickedMarker) {
+			  clickedMarker.setIcon(farms);
+		    }
+		    var layer = e.target;
+		    e.target.setIcon(alt);
+		    clickedMarker = e.target;
+		
+		    info.update(layer.feature.properties);
 		}
+		
+		var geojson;
+
+		function onEachFeature(feature, layer) {
+			layer.on({
+				click: clickFeature
+				//mouseout: resetHighlight
+			});
+		}
+		geojson = L.geoJson(farmList, {
+
+			pointToLayer: function (feature, latlng) {
+				return L.marker(latlng, {icon: farms});
+			},
+			onEachFeature: onEachFeature
 			
 		});
-		markers.addLayer(geojson);
+                
+                markers.addLayer(geojson, info);
 
 		map.addLayer(markers);
 		map.fitBounds(markers.getBounds());
